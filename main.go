@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/go-chi/chi/v5"
 )
 
 func homeHandler(w http.ResponseWriter, r *http.Request) {
@@ -41,11 +43,15 @@ func pathHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
-	http.HandleFunc("/", pathHandler)
+	r := chi.NewRouter()
+
+	r.Get("/", homeHandler)
+	r.Get("/contact", contactHandler)
+	r.Get("/faq", faqHandler)
 
 	log.Print("Listening on :8000...")
 
-	err := http.ListenAndServe(":8000", nil)
+	err := http.ListenAndServe(":8000", r)
 
 	if err != nil {
 		log.Fatal(err)
