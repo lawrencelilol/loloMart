@@ -19,16 +19,16 @@ func main() {
 	r.Get("/contact", controllers.StaticHandler(
 		views.Must(views.ParseFS(templates.FS, "contact.html"))))
 
-	r.Get("/faq", controllers.StaticHandler(
+	r.Get("/faq", controllers.FAQ(
 		views.Must(views.ParseFS(templates.FS, "faq.html"))))
 
 	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "page not found", http.StatusNotFound)
 	})
 
-	log.Print("Listening on :8000...")
+	log.Print("Listening on :3000...")
 
-	err := http.ListenAndServe(":8000", r)
+	err := http.ListenAndServe(":3000", r)
 
 	if err != nil {
 		log.Fatal(err)

@@ -1,4 +1,13 @@
 <h1>FAQ Page</h1>
 	<ul>
-	<li>Is there a free version? No, you need to pay for this </li>
+	{{range .}}
+	{{template "qa" .}}
+
+	{{end}}
 	</ul>
+
+{{define "qa"}}
+
+<li><b>{{.Question}}</b> : {{.Answer}}</li>
+
+{{end}}
