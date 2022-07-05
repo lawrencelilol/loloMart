@@ -1,53 +1,30 @@
 package main
 
 import (
-	"fmt"
 	"log"
+	"loloMart/controllers"
+	"loloMart/templates"
+	"loloMart/views"
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
 )
 
-func homeHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "<h1>Welcome to my great site! </h1>")
-
-}
-
-func contactHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "<h1>Contact Lawrence </h1>")
-}
-
-func faqHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	fmt.Fprint(w, `<h1>FAQ Page</h1>
-	<ul>
-	<li>Is there a free version? No, you need to pay for this </li>
-	</ul>
-	`)
-
-}
-
-func pathHandler(w http.ResponseWriter, r *http.Request) {
-
-	switch r.URL.Path {
-	case "/":
-		homeHandler(w, r)
-	case "/contact":
-		contactHandler(w, r)
-	case "/faq":
-		faqHandler(w, r)
-	default:
-		http.Error(w, "page not found", http.StatusNotFound)
-	}
-}
-
 func main() {
-
 	r := chi.NewRouter()
 
-	r.Get("/", homeHandler)
-	r.Get("/contact", contactHandler)
-	r.Get("/faq", faqHandler)
+	r.Get("/", controllers.StaticHandler(
+		views.Must(views.ParseFS(templates.FS, "home.html"))))
+
+	r.Get("/contact", controllers.StaticHandler(
+		views.Must(views.ParseFS(templates.FS, "contact.html"))))
+
+	r.Get("/faq", controllers.StaticHandler(
+		views.Must(views.ParseFS(templates.FS, "faq.html"))))
+
+	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
+		http.Error(w, "page not found", http.StatusNotFound)
+	})
 
 	log.Print("Listening on :8000...")
 
@@ -56,5 +33,4 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 }
