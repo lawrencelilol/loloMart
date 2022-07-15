@@ -8,8 +8,11 @@
  ```
 
  ```sql
- CREATE TABLE users (
+CREATE TABLE "user" (
     id SERIAL PRIMARY KEY,
-    email VARCHAR(255) UNIQUE
- );
+    age INT,
+    first_name TEXT,
+    last_name TEXT,
+    email TEXT UNIQUE NOT NULL
+);
  ```
