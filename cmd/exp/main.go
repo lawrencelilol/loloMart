@@ -70,6 +70,7 @@ func main() {
 	//insert some data
 	name := "Magic Johnson"
 	email := "magic@gmail.com"
+	
 
 	_, err = db.Exec(`
 	INSERT INTO users (name, email) 
