@@ -103,19 +103,17 @@ func main() {
 	// }
 	// fmt.Printf("User information: name = %s, email = %s\n", name, email)
 
-	userID := 1
-
-	for i := 0; i <= 5; i++ {
-		amount := i * 100
-		desc := fmt.Sprintf("Fake Order %d", i)
-		_, err = db.Exec(`
-		INSERT INTO orders (user_id, amount, description)
-		VALUES ($1,$2,$3);`, userID, amount, desc)
-		if err != nil {
-			panic(err)
-		}
-	}
-	fmt.Println("Created fake orders.")
+	// for i := 0; i <= 5; i++ {
+	// 	amount := i * 100
+	// 	desc := fmt.Sprintf("Fake Order %d", i)
+	// 	_, err = db.Exec(`
+	// 	INSERT INTO orders (user_id, amount, description)
+	// 	VALUES ($1,$2,$3);`, userID, amount, desc)
+	// 	if err != nil {
+	// 		panic(err)
+	// 	}
+	// }
+	// fmt.Println("Created fake orders.")
 
 	type Order struct {
 		Id          int
@@ -127,8 +125,9 @@ func main() {
 	var orders []Order
 
 	userID := 1
+
 	rows, err := db.Query(`
-	SELECT id, user_id, amount, description
+	SELECT id, amount, description
 	FROM orders
 	WHERE user_id = $1;`, userID)
 
@@ -149,7 +148,7 @@ func main() {
 
 	err = rows.Err()
 	if err != nil {
-		panic(err)
+		panic(err) 
 	}
 
 	fmt.Println("Orders: ", orders)
