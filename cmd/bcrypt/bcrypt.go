@@ -23,6 +23,5 @@ func hash(password string) {
 }
 
 func compare(password string, hash string) {
-	fmt.Print("started comparing")
 	fmt.Printf("TODO: Compare the password  %q with the hash %q\n", password, hash)
 }

@@ -3,6 +3,7 @@ module loloMart
 go 1.18
 
 require (
+	github.com/SrikanthBhandary/go-web-cli v0.0.0-20211112103921-56c5a26bcceb // indirect
 	github.com/alecthomas/template v0.0.0-20190718012654-fb15b899a751 // indirect
 	github.com/alecthomas/units v0.0.0-20210208195552-ff826a37aa15 // indirect
 	github.com/bmatcuk/doublestar v1.3.4 // indirect
@@ -11,6 +12,7 @@ require (
 	github.com/cortesi/termlog v0.0.0-20210222042314-a1eec763abec // indirect
 	github.com/fatih/color v1.13.0 // indirect
 	github.com/go-chi/chi/v5 v5.0.7 // indirect
+	github.com/inconshreveable/mousetrap v1.0.0 // indirect
 	github.com/jackc/chunkreader/v2 v2.0.1 // indirect
 	github.com/jackc/pgconn v1.12.1 // indirect
 	github.com/jackc/pgio v1.0.0 // indirect
@@ -22,6 +24,8 @@ require (
 	github.com/mattn/go-colorable v0.1.9 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/rjeczalik/notify v0.0.0-20181126183243-629144ba06a1 // indirect
+	github.com/spf13/cobra v0.0.3 // indirect
+	github.com/spf13/pflag v1.0.5 // indirect
 	golang.org/x/crypto v0.0.0-20210711020723-a769d52b0f97 // indirect
 	golang.org/x/net v0.0.0-20210323141857-08027d57d8cf // indirect
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
