@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"loloMart/controllers"
+	"loloMart/models"
 	"loloMart/templates"
 	"loloMart/views"
 	"net/http"
@@ -31,7 +32,19 @@ func main() {
 			"faq.html", "tailwind.html",
 		))))
 
-	usersC := controllers.Users{}
+	cfg := models.DefaultPostgresConfig()
+	db, err := models.Open(cfg)
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	userService := models.UserService{
+		DB: db,
+	}
+	usersC := controllers.Users{
+		UserService: &userService, //TODO: implement UserService
+	}
+
 	usersC.Templates.New = views.Must(views.ParseFS(
 		templates.FS,
 		"signup.html", "tailwind.html",
