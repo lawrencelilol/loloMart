@@ -59,7 +59,7 @@ func main() {
 
 	log.Print("Listening on :3000...")
 
-	err := http.ListenAndServe(":3000", r)
+	err = http.ListenAndServe(":3000", r)
 
 	if err != nil {
 		log.Fatal(err)
