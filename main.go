@@ -57,14 +57,15 @@ func main() {
 	r.Get("/signup", usersC.New)
 	r.Post("/users", usersC.Create)
 	r.Get("/signin", usersC.SignIn)
+	r.Post("/signin", usersC.ProcessSignIn)
 
 	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
-		http.Error(w, "page not found", http.StatusNotFound)
+		http.Error(w, "Page not found", http.StatusNotFound)
 	})
 
-	log.Print("Listening on :3000...")
+	log.Print("Listening on :4000...")
 
-	err = http.ListenAndServe(":3000", r)
+	err = http.ListenAndServe(":4000", r)
 
 	if err != nil {
 		log.Fatal(err)
