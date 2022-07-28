@@ -9,6 +9,7 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi/v5"
+	"github.com/gorilla/csrf"
 )
 
 func main() {
@@ -66,7 +67,15 @@ func main() {
 
 	log.Print("Listening on :4000...")
 
-	err = http.ListenAndServe(":4000", r)
+	csrfKey := "gFvi45R4fy5xNBlnEeZtQbfAVCYEIAUX"
+	csrfMw := csrf.Protect(
+		[]byte(csrfKey),
+
+		//TODO:Fix this before deployment
+		csrf.Secure(false),
+	)
+
+	err = http.ListenAndServe(":4000", csrfMw(r))
 
 	if err != nil {
 		log.Fatal(err)
