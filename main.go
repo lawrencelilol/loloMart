@@ -39,6 +39,7 @@ func main() {
 		panic(err)
 	}
 	defer db.Close()
+	
 	userService := models.UserService{
 		DB: db,
 	}
